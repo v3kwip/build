@@ -18,12 +18,13 @@ script:
   - drush make --no-core drupal-org.make drupal-code
   - tar -czf $BUILD ./drupal-code/
   - mv $BUILD build/
-
-notifications: { email: false }
-
-after_success:
   - cd build
-  - git checkout -b ${BRANCH}
+  - git checkout --orphan ${BRANCH}
+  - rm -rf *
   - git add $BUILD
   - git commit -m "Add $BUILD"
+
+after_success:
   - git push --force origin ${BRANCH}:builds
+
+notifications: { email: false }
