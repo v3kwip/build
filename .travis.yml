@@ -13,12 +13,12 @@ install:
 
 script:
   - drush make drupal-org.make drupal-code
+  - tar -cvzf $BUILD ./drupal-code/
+  - mv $BUILD build/
 
 notifications: { email: false }
 
 after_success:
-  - tar -cvzf $BUILD ./drupal-code/
-  - mv $BUILD build/
   - cd build
   - git checkout -b builds
   - git add $BUILD
