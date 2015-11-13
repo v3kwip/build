@@ -2,9 +2,7 @@ language: php
 php: [5.6]
 
 install:
-  - touch ~/.ssh/id_rsa
-  - wget –quiet ${PK_URL} -O ~/.ssh/id_rsa
-  - chmod 600 ~/.ssh/id_rsa
+  - $BUILD=build-${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}.tar.gz
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - composer global require drush/drush:^7.0
 
@@ -14,6 +12,14 @@ script:
 notifications: { email: false }
 
 after_success:
-  # - tar -cvzf xxx.tar.gz ./drupal-code/
-  # - rm -rf ${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}./drupal-code/
-  #- php commit.php
+  - tar -cvzf $BUILD ./drupal-code/
+  - touch ~/.ssh/id_rsa
+  - wget –quiet ${PK_URL} -O ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - sh-keyscan 209.114.51.162 >> ~/.ssh/known_hosts
+  - git clone $BUILD_URL build
+  - mv $BUILD build/
+  - cd build && git checkout -b builds
+  - cd build && git add $BUILD
+  - cd build && git commit -m "Add $BUILD"
+  - cd build && git push origin 
