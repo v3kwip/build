@@ -29,8 +29,8 @@ script:
   - git clone ${ACCOUNTS_URL} ${BUILD_DIR}/sites/accounts.site
 
   # Compress the source code
-  - mv ${BUILD_DIR} /${BUILD_DIR}
-  - tar -czf ${BUILD_FILE} /${BUILD_DIR}
+  - mv ${BUILD_DIR} /drupal
+  - tar -czf ${BUILD_FILE} /drupal
 
   # Commit the build
   - cd ${TRAVIS_BUILD_DIR}/build
