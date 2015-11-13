@@ -21,7 +21,8 @@ script:
   - cd build
   - git checkout --orphan ${BRANCH}
   - rm -rf *
-  - mv ../$BUILD build/
+  - mv ../$BUILD ./
+  - ls -lah
   - git add $BUILD
   - git commit -m "Add $BUILD"
 
