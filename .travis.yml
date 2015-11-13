@@ -1,7 +1,16 @@
 language: php
 php: [5.6]
+
 install:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - composer global require drush/drush:^7.0
+
 script:
   - drush make drupal-org.make drupal-code
+
+notifications: { email: false }
+
+after_success:
+  - tar -cvzf xxx.tar.gz ./drupal-code/
+  - rm -rf ${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}./drupal-code/
+  - php commit.php
