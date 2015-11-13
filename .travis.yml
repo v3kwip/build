@@ -4,6 +4,7 @@ env:
   global:
     - FOO=bar
     - BAR=foo
+    - MYV=${TRAVIS_BRANCH}
     
 script:
-  echo ${FOO} ${BAR}
+  echo ${FOO} ${BAR} ${MYV}
