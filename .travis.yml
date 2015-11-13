@@ -15,7 +15,7 @@ install:
 
 script:
   - drush make drupal-org.make drupal-code
-  - tar -cvzf $BUILD ./drupal-code/
+  - tar -czf $BUILD ./drupal-code/
   - mv $BUILD build/
 
 notifications: { email: false }
