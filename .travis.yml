@@ -35,7 +35,7 @@ script:
   # Commit the build
   - cd ${TRAVIS_BUILD_DIR}/build
   - git checkout --orphan ${BRANCH}; git rm --cached -r *; rm -rf *
-  - mv ../make/${BUILD_FILE} ./
+  - mv ${BUILD_DIR}/../${BUILD_FILE} ./
   - git add ${BUILD_FILE}
   - git commit -m "Add ${BUILD_FILE}"
 
