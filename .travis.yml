@@ -9,4 +9,4 @@ install:
 
 script:
   - pwd
-  - echo ${FOO} ${BAR} ${MYV}
+  - echo ${FOO} ${BAR} ${MYV} ${TRAVIS_TAG}
