@@ -16,7 +16,7 @@ install:
   - composer global require drush/drush:^7.0
 
 script:
-  - drush make drupal-org.make drupal-code
+  - drush make -q --concurrency=4 drupal-org.make drupal-code
   - tar -czf $BUILD ./drupal-code/
   - cd build
   - git checkout --orphan ${BRANCH}
