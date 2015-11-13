@@ -14,15 +14,15 @@ install:
   - composer global require drush/drush:^7.0
 
 script:
-  - drush make drupal-org.make drupal-code
-  - tar -czf $BUILD ./drupal-code/
+  - drush make --no-core drupal-org.make drupal-code
+  - GZIP=-9 tar -czfv $BUILD ./drupal-code/
   - mv $BUILD build/
 
 notifications: { email: false }
 
 after_success:
   - cd build
-  - git checkout -b builds
+  - git checkout -b TravisCI-${TRAVIS_BRANCH}
   - git add $BUILD
   - git commit -m "Add $BUILD"
-  - git push origin builds
+  - git push --force origin builds
