@@ -15,7 +15,9 @@ install:
   - composer global require drush/drush:^7.0
 
 script:
-  - drush make --no-core drupal-org.make drupal-code
+  - drush make --no-core drupal-org.make make
+  - mkdir ./drupal-code
+  - mv make/sites/all ./drupal-code
   - tar -cvzf $BUILD ./drupal-code/
   - mv $BUILD build/
 
