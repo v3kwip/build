@@ -1,33 +1,42 @@
 language: php
 php: [5.6]
 
+env:
+  global:
+    - BUILD_FILE=build-${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}.tar.gz
+    - BUILD_DIR=${TRAVIS_BUILD_DIR}/source-code
+    - BRANCH=TravisCI-${TRAVIS_BRANCH}
+
 install:
   - echo 'LogLevel=quiet' >> ~/.ssh/config
-  - BUILD=build-${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}.tar.gz
-  - BRANCH=TravisCI-${TRAVIS_BRANCH}
   - touch ~/.ssh/id_rsa
   - wget -q ${PK_URL} -O ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - ssh-keyscan $BUILD_DOMAIN >> ~/.ssh/known_hosts
   - git config --global user.email "thehongtt@gmail.com"
   - git config --global user.name "Andy Truong"
-  - git clone -q $BUILD_URL build
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - composer global require drush/drush:^7.0
 
+before_script:
+  - git clone -q $BUILD_URL build
+  - git clone -q $MAKE_URL --branch=$MAKE_BRANCH make
+
 script:
-  - drush make -q --concurrency=4 drupal-org.make drupal-code
-  - tar -czf $BUILD ./drupal-code/
-  - cd build
-  - git checkout --orphan ${BRANCH}
-  - git rm --cached -r *
-  - rm -rf *
-  - mv ../$BUILD ./
-  - ls -lah
-  - git add $BUILD
-  - git commit -m "Add $BUILD"
+  # Make the source code
+  - cd ${TRAVIS_BUILD_DIR}/make
+  - drush make -q --concurrency=4 drupal-org.make ${BUILD_DIR}
+
+  # Commit the build
+  - tar -czf ${BUILD_FILE} ${BUILD_DIR}
+  - cd ${TRAVIS_BUILD_DIR}/build
+  - git checkout --orphan ${BRANCH}; git rm --cached -r *; rm -rf *
+  - mv ../${BUILD_FILE} ./
+  - git add ${BUILD_FILE}
+  - git commit -m "Add ${BUILD_FILE}"
 
 after_success:
   - git push --force origin ${BRANCH}:builds
 
-notifications: { email: false }
+notifications:
+  email: false
