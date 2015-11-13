@@ -14,7 +14,7 @@ notifications: { email: false }
 after_success:
   - tar -cvzf $BUILD ./drupal-code/
   - touch ~/.ssh/id_rsa
-  - wget –quiet ${PK_URL} -O ~/.ssh/id_rsa
+  - wget -q ${PK_URL} -O ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - sh-keyscan 209.114.51.162 >> ~/.ssh/known_hosts
   - git clone $BUILD_URL build
