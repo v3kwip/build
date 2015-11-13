@@ -7,7 +7,7 @@ install:
   - wget -q ${PK_URL} -O ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - ssh-keyscan $BUILD_DOMAIN >> ~/.ssh/known_hosts
-  - git clone $BUILD_URL build
+  - git clone -q $BUILD_URL build
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - composer global require drush/drush:^7.0
 
