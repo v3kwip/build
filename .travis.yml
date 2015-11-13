@@ -16,7 +16,7 @@ install:
   - git config --global user.email "thehongtt@gmail.com"
   - git config --global user.name "Andy Truong"
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - composer global require drush/drush:^7.0
+  - composer global require -q drush/drush:^7.0
 
 before_script:
   - git clone -q $BUILD_URL build
@@ -26,12 +26,12 @@ script:
   # Make the source code
   - cd ${TRAVIS_BUILD_DIR}/make
   - drush make -q --concurrency=4 build.make ${BUILD_DIR}
+  - tar -czf ${BUILD_FILE} ${BUILD_DIR}
 
   # Commit the build
-  - tar -czf ${BUILD_FILE} ${BUILD_DIR}
   - cd ${TRAVIS_BUILD_DIR}/build
   - git checkout --orphan ${BRANCH}; git rm --cached -r *; rm -rf *
-  - mv ../${BUILD_FILE} ./
+  - mv ../make/${BUILD_FILE} ./
   - git add ${BUILD_FILE}
   - git commit -m "Add ${BUILD_FILE}"
 
