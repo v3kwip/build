@@ -7,4 +7,5 @@ env:
     - MYV=${TRAVIS_BRANCH}
     
 script:
+  pwd
   echo ${FOO} ${BAR} ${MYV}
