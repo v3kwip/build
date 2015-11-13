@@ -11,3 +11,7 @@ script:
   - pwd
   - echo ${FOO} ${BAR} ${MYV} ${TRAVIS_TAG}
   - echo ${build-${TRAVIS_BRANCH}-${TRAVIS_TAG}.tar.gz/../.}
+  - which node
+  - which npm
+  - which gem
+  - which sass
