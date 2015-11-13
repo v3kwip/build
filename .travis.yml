@@ -8,5 +8,5 @@ install:
   - source vars.bash
 
 script:
-  pwd
-  echo ${FOO} ${BAR} ${MYV}
+  - pwd
+  - echo ${FOO} ${BAR} ${MYV}
