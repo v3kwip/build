@@ -1,8 +1,6 @@
-api: 2
-core: 7.x
+api = 2
+core = 7.x
 
-includes:
-  make/*.yml
+projects[drupal][version] = "7.41"
 
-projects:
-  drupal: { version: "7.41" }
+includes[] ="make/contrib.make.yml"
