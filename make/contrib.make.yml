@@ -90,55 +90,29 @@ projects:
       url: "http://git.drupal.org/project/format_csv.git"
       revision: "19b171ce5a98a553bd21d9e4a26add8c5eb3229f"
 
-  options_element:
-    version: "1.12"
-
-  headjs:
-    version: "1.4"
-
-  icon:
-    version: "1.0-beta6"
-
+  options_element: { version: "1.12" }
+  headjs: { version: "1.4" }
+  icon: { version: "1.0-beta6" }
   improved_multi_select:
     version: "1.2"
     patch:
       - "https://www.drupal.org/files/issues/improved_multi_select-firefox_jquery_1.6.x_plus-2500943-2.patch"
 
-  fontello:
-    version: "1.0"
-
-  fontawesome:
-    version: "2.5"
-
-  message:
-    version: "1.9"
-
-  imagecache_profiles:
-    version: "1.1"
-
-  gravatar:
-    version: "1.1"
-
-  job_scheduler:
-    version: 2.0-alpha3
-
-  jquery_update:
-    version: "2.6"
-
+  fontello: { version: "1.0" }
+  fontawesome: { version: "2.5" }
+  message: { version: "1.9" }
+  imagecache_profiles: { version: "1.1" }
+  gravatar: { version: "1.1" }
+  job_scheduler: { version: 2.0-alpha3 }
+  jquery_update: { version: "2.6" }
   less:
     version: "3.0"
     patch:
       - "https://gist.githubusercontent.com/tienvx/9156fca85a32fa9797a9/raw/cf904b3141db424061bfdb6644f05c7efc49e3ef/fix-undefined-index-with-wysiwyg.patch"
 
-  libraries:
-    version: "2.2"
-
-  link:
-    version: "1.3"
-
-  menu_attributes:
-    version: 1.0-rc1
-
+  libraries: { version: "2.2" }
+  link: { version: "1.3" }
+  menu_attributes: { version: 1.0-rc1 }
   migrate:
     type: module
     download:
@@ -163,60 +137,35 @@ projects:
       url: http://code.go1.com.au/aduro/migrate_gdocs.git
       revision: 63802484e900895b76cf85d1c735ba9635a325fa
 
-  module_filter:
-    version: "1.6"
+  module_filter: { version: "1.6" }
 
-  mongodb:
-    version: 1.0-rc2
-
-  pace:
-    version: "1.1"
-
-  panels:
-    version: "3.4"
-
-  paranoia:
-    version: "1.3"
-
-  pathauto:
-    version: "1.2"
+  mongodb: { version: 1.0-rc2 }
+  pace: { version: "1.1" }
+  panels: { version: "3.4" }
+  paranoia: { version: "1.3" }
+  pathauto: { version: "1.2" }
 
   profile2:
     version: "1.3"
     patch:
-      # 1011370
       - http://drupal.org/files/1011370-profile2-ctools-54.patch
       # 1593230 - Add roles restriction to associated user.
       - http://drupal.org/files/profile2_roles-1593230-22.patch
 
-  profile2_regpath:
-    version: "1.12"
-
-  protocol_relative_urls:
-    version: "1.0"
-
-  references:
-    version: "2.1"
-
-  remember_me:
-    version: "1.0"
-
-  restws:
-    version: "2.1"
-
-  role_export:
-    version: "1.0"
+  profile2_regpath: { version: "1.12" }
+  protocol_relative_urls: { version: "1.0" }
+  references: { version: "2.1" }
+  remember_me: { version: "1.0" }
+  restws: { version: "2.1" }
+  role_export: { version: "1.0" }
 
   rules:
     version: "2.7"
     patch:
-      # 1810656
       - https://www.drupal.org/files/rules-jquery_update_compatibility-1810656-37.patch
-      # 2094879
       - https://www.drupal.org/files/issues/2094879-column_owner_not_created-28.patch
 
-  rules_repeated_events:
-    version: 1.0-alpha3
+  rules_repeated_events: { version: 1.0-alpha3 }
 
   smsframework:
     download:
@@ -230,21 +179,15 @@ projects:
       url: http://git.drupal.org/project/sms_clickatell.git
       revision: dabf7b5d33999726a2d14e0b1dcb87a772054821
 
-  services:
-    version: "3.12"
-
-  services_basic_auth:
-    version: "1.3"
-  services_documentation:
-    version: "1.4"
+  services: { version: "3.12" }
+  services_basic_auth: { version: "1.3" }
+  services_documentation: { version: "1.4" }
   services_entity:
     version: 2.0-alpha8
     patch:
-      # 2302661
       - http://drupal.org/files/issues/services_entity-operation_in_property_field_condition-2302661-5.patch
       - https://gist.githubusercontent.com/mrsinguyen/f1074cdc626917f6ef2f/raw/9850df1f22669fe6bcf597ffeee4b165d2c9d958/se.diff
-  services_guzzle:
-    version: 1.x-dev
+  services_guzzle: { version: 1.x-dev }
 
   services_logs:
     type: module
@@ -256,8 +199,7 @@ projects:
       # 2036853
       - http://drupal.org/files/multiple_callbacks.patch
 
-  token:
-    version: "1.5"
+  token: { version: "1.5" }
 
   username_check:
     download:
@@ -265,14 +207,10 @@ projects:
       url: "http://git.drupal.org/project/username_check.git"
       branch: "7.x-1.x"
 
-  userpickit:
-    version: "1.0-beta3"
+  userpickit: { version: "1.0-beta3" }
 
-  uuid:
-    version: "1.0-alpha6"
-
-  viewreference:
-    version: "3.3"
+  uuid: { version: "1.0-alpha6" }
+  viewreference: { version: "3.3" }
 
   web_widgets:
     version: "1.0-alpha2"
@@ -286,41 +224,31 @@ projects:
       # 2192515
       - http://drupal.org/files/issues/videojs_directory_is_not_updated-2192515-1.patch
 
-  votingapi:
-    version: "2.11"
+  votingapi: { version: "2.11" }
 
   wysiwyg:
     version: "2.2"
     patch:
-      # 1853550
       - http://www.drupal.org/files/wysiwyg-ckeditor-4.1853550.136.patch
-      # 1223080
       - http://drupal.org/files/issues/wysiwyg-ckeditor-instanceexists-1223080-1.patch
 
   # User permissions
   administerusersbyrole:
     version: 1.x-dev
     patch:
-      # 1680156
       - http://drupal.org/files/0001-Issue-1680156.patch
-      # 2059429
       - http://www.drupal.org/files/fix_notice_when_profile2_is_enabled_2059429-1.patch
 
-  nocurrent_pass:
-    version: "1.0"
-
-  roleassign:
-    version: "1.0"
+  nocurrent_pass: { version: "1.0" }
+  roleassign: { version: "1.0" }
 
   subpermissions:
     version: "1.0"
     patch:
-      # 2168405
       - "http://drupal.org/files/issues/subpermissions-2168405-3.patch"
 
   # Contact
-  relation:
-    version: "1.0-rc4"
+  relation: { version: "1.0-rc4" }
 
   # Mail
   amazon_ses:
@@ -387,29 +315,20 @@ projects:
     verions: "1.16"
 
   # Performance
-  memcache:
-    version: "1.0"
+  memcache: { version: "1.0" }
 
   autoslave:
     version: "1.8"
 
   # Search
-  search_api:
-    version: "1.11"
-  search_api_db:
-    version: "1.2"
-  restws_search_api:
-    version: 1.0-beta1
+  search_api: { version: "1.11" }
+  search_api_db: { version: "1.2" }
+  restws_search_api: { version: 1.0-beta1 }
 
   # Views
-  views_bulk_operations:
-    version: 3.3
-
-  views_infinite_scroll:
-    version: "1.0"
-
-  views_boxes:
-    version: "1.0-beta8"
+  views_bulk_operations: { version: 3.3 }
+  views_infinite_scroll: { version: "1.0" }
+  views_boxes: { version: "1.0-beta8" }
 
   views_php:
     download:
@@ -417,18 +336,13 @@ projects:
       url: "http://git.drupal.org/project/views_php.git"
       branch: "7.x-1.x"
 
-  datatables:
-    version: "1.2"
+  datatables: { version: "1.2" }
 
   homebox:
     version: "2.0-rc1"
     patch:
       - "http://www.drupal.org/files/issues/homebox-auto-saving-1068336-7.x-2.x-dev.patch"
 
-  disable_messages:
-    version: "1.1"
-
-  composer_manager:
-    version: "1.6"
-  xautoload:
-    version: "5.5"
+  disable_messages: { version: "1.1" }
+  composer_manager: { version: "1.6" }
+  xautoload: { version: "5.5" }
