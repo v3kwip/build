@@ -19,7 +19,8 @@ notifications: { email: false }
 after_success:
   - tar -cvzf $BUILD ./drupal-code/
   - mv $BUILD build/
-  - cd build && git checkout -b builds
-  - cd build && git add $BUILD
-  - cd build && git commit -m "Add $BUILD"
-  - cd build && git push origin 
+  - cd build
+  - git checkout -b builds
+  - git add $BUILD
+  - git commit -m "Add $BUILD"
+  - git push origin 
