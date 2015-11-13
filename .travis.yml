@@ -26,7 +26,8 @@ script:
   # Make the source code
   - cd ${TRAVIS_BUILD_DIR}/make
   - drush make -q --concurrency=4 build.make ${BUILD_DIR}
-  - tar -czf ${BUILD_FILE} ${BUILD_DIR}
+  - mv ${BUILD_DIR} /${BUILD_DIR}
+  - tar -czf ${BUILD_FILE} /${BUILD_DIR}
 
   # Commit the build
   - cd ${TRAVIS_BUILD_DIR}/build
