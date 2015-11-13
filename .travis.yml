@@ -20,6 +20,7 @@ script:
   - tar -czf $BUILD ./drupal-code/
   - cd build
   - git checkout --orphan ${BRANCH}
+  - git rm --cached -r *
   - rm -rf *
   - mv ../$BUILD ./
   - ls -lah
