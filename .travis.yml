@@ -37,18 +37,18 @@ script:
   # Make the UI
   - cd ${TRAVIS_BUILD_DIR}/ui
   - rm -rf .git
-  - npm install
-  - bower install -q
-  - grunt set-env:testing
-  - grunt build
-  - cd ${TRAVIS_BUILD_DIR}
-  - tar -czf ${BUILD_UI} ui
+  - npm install && \
+    bower install -q && \
+    grunt set-env:testing && \
+    grunt build && \
+    cd ${TRAVIS_BUILD_DIR} && \
+    tar -czf ${BUILD_UI} ui
 
   # Make the base Drupal source code
   # @TODO Update composer.json
   - cd ${TRAVIS_BUILD_DIR}
-  - drush make -q --concurrency=4 ${TRAVIS_BUILD_DIR}/make/build.make drupal
-  - tar -czf ${BUILD_DRUPAL} drupal
+  - drush make -q --concurrency=4 ${TRAVIS_BUILD_DIR}/make/build.make drupal && \
+    tar -czf ${BUILD_DRUPAL} drupal
 
   # Accounts
   - cd ${TRAVIS_BUILD_DIR}
