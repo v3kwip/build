@@ -15,20 +15,20 @@ install:
   - npm install -g bower grunt-cli
 
 before_script:
-  - git clone ${UI_URL} ui
+  - git clone ${UI_URL} ui --branch=deploy
 
 script:
   # Make the UI
   - cd ${TRAVIS_BUILD_DIR}/ui
   - rm -rf .git
-  - npm install -q && \
-    bower install -q && \
-    grunt set-env:testing && \
+  - npm install -q &&
+    bower install -q &&
+    grunt set-env:testing &&
     grunt build -q
 
 after_failure:
-  - gem install gist
-  - gist ${TRAVIS_BUILD_DIR}/ui/npm-debug.log
+  - gem install gist &&
+    gist ${TRAVIS_BUILD_DIR}/ui/npm-debug.log
 
 notifications:
   email: false
