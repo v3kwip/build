@@ -11,7 +11,7 @@ install:
 script:
   - pwd
   - echo ${FOO} ${BAR} ${MYV} ${TRAVIS_TAG}
-  - echo ${FILE/../.}
+  - echo ${FILE/-./.}
   - which node
   - node --version
   - which npm
