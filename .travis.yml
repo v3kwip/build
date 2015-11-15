@@ -21,10 +21,10 @@ script:
   # Make the UI
   - cd ${TRAVIS_BUILD_DIR}/ui
   - rm -rf .git
-  - npm install && \
+  - npm install -q && \
     bower install -q && \
     grunt set-env:testing && \
-    grunt build
+    grunt build -q
 
 after_failure:
   - gem install gist
