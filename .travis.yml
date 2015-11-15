@@ -19,8 +19,8 @@ before_install:
   - chmod 600 ~/.ssh/id_rsa
   - ssh-keyscan $BUILD_DOMAIN >> ~/.ssh/known_hosts
   - git clone ${UI_URL} ui --branch=deploy
-  - cd ui
   - mkdir -p bower_components node_modules
+  - cd ui
   - ln -s ../bower_components ./
   - ln -s ../node_modules ./
   - npm install -g bower grunt-cli
