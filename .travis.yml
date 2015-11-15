@@ -1,11 +1,12 @@
 language: node_js
 node_js: [4]
 env:
-  global:
-    - CXX=g++-4.8
+  global: [CXX=g++-4.8]
 
-install:
-  - source vars.bash
+addons:
+  apt:
+    sources: [ubuntu-toolchain-r-test]
+    packages: [gcc-4.8, g++-4.8]
 
 script:
   - npm install -g bower && 
