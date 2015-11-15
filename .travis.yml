@@ -11,7 +11,7 @@ install:
   - npm install -g bower grunt-cli
 
 before_script:
-  - which node && which npm && which gem && which ruby && which docker
+  - which node && which npm && which gem && which ruby
   - node --version
   - npm --version
   - bower --version
