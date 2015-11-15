@@ -17,3 +17,6 @@ script:
   - which npm
   - which gem
   - which ruby
+
+after_success:
+  - which docker
