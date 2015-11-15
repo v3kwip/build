@@ -9,7 +9,9 @@ addons:
     sources: [ubuntu-toolchain-r-test]
     packages: [gcc-4.8, g++-4.8]
 
+before_script:
+  - npm install -g bower
+
 script:
-  - npm install -g bower && 
-    npm install && 
+  - npm install && 
     bower install
