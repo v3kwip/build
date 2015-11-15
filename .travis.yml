@@ -9,7 +9,7 @@ install:
   - source vars.bash
   - npm install -g npm@2.14.2
 
-script:
+before_script:
   - pwd
   - echo ${FOO} ${BAR} ${MYV} ${TRAVIS_TAG}
   - echo ${FILE/-./.}
@@ -19,6 +19,9 @@ script:
   - which ruby
   - node --version
   - npm --version
+
+script:
+  - npm install
 
 after_success:
   - which docker
