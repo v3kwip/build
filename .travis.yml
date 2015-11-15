@@ -3,7 +3,8 @@ php: [5.6]
 
 env:
   global:
-    - BUILD_FILE=build-${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}.tar.gz
+    - BF=build-${TRAVIS_BRANCH}-${TRAVIS_TAG}.tar.gz
+    - BUILD_FILE=${BF/-./.}
     - BUILD_DIR=${TRAVIS_BUILD_DIR}/drupal
     - BRANCH=TravisCI-${TRAVIS_BRANCH}
 
