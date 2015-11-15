@@ -34,10 +34,19 @@ before_script:
   - git clone ${UI_URL} ui
 
 script:
+  # Make the UI
+  - cd ${TRAVIS_BUILD_DIR}/ui
+  - rm -rf .git
+  - npm install
+  - bower install -q
+  - grunt set-env:testing
+  - grunt build
   - cd ${TRAVIS_BUILD_DIR}
+  - tar -czf ${BUILD_UI} ui
 
   # Make the base Drupal source code
   # @TODO Update composer.json
+  - cd ${TRAVIS_BUILD_DIR}
   - drush make -q --concurrency=4 ${TRAVIS_BUILD_DIR}/make/build.make drupal
   - tar -czf ${BUILD_DRUPAL} drupal
 
@@ -45,16 +54,6 @@ script:
   - cd ${TRAVIS_BUILD_DIR}
   - rm -rf accounts/.git
   - tar -czf ${BUILD_ACCOUNTS} accounts
-
-  # Make the UI
-  - cd ${TRAVIS_BUILD_DIR}/ui
-  - rm -rf .git
-  - npm install
-  - bower install
-  - grunt set-env:testing
-  - grunt build
-  - cd ..
-  - tar -czf ${BUILD_UI} ui
 
   # Commit the build
   - cd ${TRAVIS_BUILD_DIR}
@@ -65,6 +64,10 @@ script:
   - git commit -m "Add ${BUILD_DRUPAL}"
   - git add ${BUILD_UI}
   - git commit -m "Add ${BUILD_UI}"
+
+after_failure:
+  - gem install gist
+  - gist ${BUILD_DIR}/ui/npm-debug.log
 
 after_success:
   - git push --force origin ${BRANCH}:builds
