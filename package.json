@@ -20,9 +20,6 @@
     "jshint-stylish": "^0.2.0",
     "load-grunt-tasks": "^0.4.0",
     "mime-db": "^1.14.0",
-    "phantomjs": "^1.9.18",
-    "protractor": "^2.5.1",
-    "protractor-html-screenshot-reporter": "0.0.21",
     "require-directory": "^2.0.0",
     "time-grunt": "^0.3.1"
   }
