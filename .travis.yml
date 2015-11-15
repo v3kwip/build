@@ -26,10 +26,14 @@ before_install:
   - npm install -g bower grunt-cli
 
 install:
-  - npm install && bower install
+  - npm install -q && 
+    bower install -q &&
+    grunt set-env:testing &&
+    grunt build -q
 
 script:
-  - ls -lah
+  - cd ${TRAVIS_BUILD_DIR}/ui
+  - rm -rf .git
 
 notifications:
   email: false
