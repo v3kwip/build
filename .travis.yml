@@ -6,8 +6,12 @@ matrix:
 
 env:
   global:
-    - BF=build-${TRAVIS_BRANCH}-${TRAVIS_TAG}.tar.gz
-    - BUILD_FILE=${BF/-./.}
+    - FILE_DRUPAL=drupal-${TRAVIS_TAG}.tar.gz
+    - FILE_ACCOUNTS=accounts-${TRAVIS_TAG}.tar.gz
+    - FILE_UI=ui-${TRAVIS_TAG}.tar.gz
+    - BUILD_DRUPAL=${FILE_DRUPAL/-./.}
+    - BUILD_ACCOUNTS=${FILE_ACCOUNTS/-./.}
+    - BUILD_UI=${FILE_UI/-./.}
     - BUILD_DIR=${TRAVIS_BUILD_DIR}/drupal
     - BRANCH=TravisCI-${TRAVIS_BRANCH}
 
@@ -21,32 +25,51 @@ install:
   - git config --global user.name "Andy Truong"
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - composer global require -q drush/drush:^7.0
+  - npm install -g bower grunt-cli
 
 before_script:
   - git clone -q $BUILD_URL build
   - git clone -q $MAKE_URL --branch=$MAKE_BRANCH make
+  - git clone ${ACCOUNTS_URL} accounts
+  - git clone ${UI_URL} ui
 
 script:
-  # Make the source code
-  - cd ${TRAVIS_BUILD_DIR}/make
-  - drush make -q --concurrency=4 build.make ${BUILD_DIR}
-  - git clone ${ACCOUNTS_URL} ${BUILD_DIR}/sites/accounts.site
+  - cd ${TRAVIS_BUILD_DIR}
 
-  # Compress the source code
-  - cd ${BUILD_DIR}/../
-  - tar -czf ${BUILD_FILE} drupal
+  # Make the base Drupal source code
+  # @TODO Update composer.json
+  - drush make -q --concurrency=4 ${TRAVIS_BUILD_DIR}/make/build.make drupal
+  - tar -czf ${BUILD_DRUPAL} drupal
+
+  # Accounts
+  - cd ${TRAVIS_BUILD_DIR}
+  - rm -rf accounts/.git
+  - tar -czf ${BUILD_ACCOUNTS} accounts
+
+  # Make the UI
+  - cd ${TRAVIS_BUILD_DIR}/ui
+  - rm -rf .git
+  - npm install
+  - bower install
+  - grunt set-env:testing
+  - grunt build
+  - cd ..
+  - tar -czf ${BUILD_UI} ui
 
   # Commit the build
-  - cd ${TRAVIS_BUILD_DIR}/build
+  - cd ${TRAVIS_BUILD_DIR}
   - git checkout --orphan ${BRANCH}; git rm --cached -r *; rm -rf *
-  - mv ${BUILD_DIR}/../${BUILD_FILE} ./
-  - git add ${BUILD_FILE}
-  - git commit -m "Add ${BUILD_FILE}"
+  - mv ${BUILD_DIR}/../${BUILD_DRUPAL} ./
+  - mv ${BUILD_DIR}/../${BUILD_UI} ./
+  - git add ${BUILD_DRUPAL}
+  - git commit -m "Add ${BUILD_DRUPAL}"
+  - git add ${BUILD_UI}
+  - git commit -m "Add ${BUILD_UI}"
 
 after_success:
   - git push --force origin ${BRANCH}:builds
 
 notifications:
   email: false
-  hipchat:
-    secure: "TTPdgZFAHC/EPq3jTUXfoyl5NY/97xVgfVQoAOZM917Tpv03Z5Me/FFJXCzH6yIE7EyObN0mHnGfIK8x4FwWk+nChiA4ATQqvVW9Eea2jkpRMLtDvE/ZUmr3ZidtLaSh/mDNxVwfEFT9yLgBnwAiJ6XMAOrR0ZoawZ5/9StNKMR7zE2SyRP3k7no+4ahm5eeWB6CIPHlWZ39CdOyvrjr3IPQjX/I1t8y6UrVKzyRFZDwFaxGN3zVY+SWT7Iuv4WHnMz5vay0AH6MutwthbruR6IzCj8eYSCi7eTLCl4iqgygtfrs0pXIEYUWVudPKCVL/gNsjjMCFLMBVlISBIx7M9RCFid8ZCCF2etQ1bVfhUchE+gVBUa8F/CvHRMKnEpBC5wZ3hzjuQdwq4su2JBQNbGJM31MMdj7VBfinxvMvXKOcvjz72H025zOu/PZcQHTAYrezxU0FuQrF6vUHRfr84Z0t8rl+LkhtM0kxi0EGixOLXnp/UXJhDMHx0xButU5SJ2qd0Uhp+orSjmbswJHlQGf4W6pI6cSRRQbeQzf8ACvc11x7Qj09GrPGQoQPsLJin/17Yb5l/sT1DAGwlo9F3gFI8tdJ50oEyKgPakO2DkSqSWBYMIVKZo5sycMgEraOkTgrBgNXmgoQRB5zJsWyzSdRx1w7QFFzpS+V31rc9E="
+#  hipchat:
+#    secure: "TTPdgZFAHC/EPq3jTUXfoyl5NY/97xVgfVQoAOZM917Tpv03Z5Me/FFJXCzH6yIE7EyObN0mHnGfIK8x4FwWk+nChiA4ATQqvVW9Eea2jkpRMLtDvE/ZUmr3ZidtLaSh/mDNxVwfEFT9yLgBnwAiJ6XMAOrR0ZoawZ5/9StNKMR7zE2SyRP3k7no+4ahm5eeWB6CIPHlWZ39CdOyvrjr3IPQjX/I1t8y6UrVKzyRFZDwFaxGN3zVY+SWT7Iuv4WHnMz5vay0AH6MutwthbruR6IzCj8eYSCi7eTLCl4iqgygtfrs0pXIEYUWVudPKCVL/gNsjjMCFLMBVlISBIx7M9RCFid8ZCCF2etQ1bVfhUchE+gVBUa8F/CvHRMKnEpBC5wZ3hzjuQdwq4su2JBQNbGJM31MMdj7VBfinxvMvXKOcvjz72H025zOu/PZcQHTAYrezxU0FuQrF6vUHRfr84Z0t8rl+LkhtM0kxi0EGixOLXnp/UXJhDMHx0xButU5SJ2qd0Uhp+orSjmbswJHlQGf4W6pI6cSRRQbeQzf8ACvc11x7Qj09GrPGQoQPsLJin/17Yb5l/sT1DAGwlo9F3gFI8tdJ50oEyKgPakO2DkSqSWBYMIVKZo5sycMgEraOkTgrBgNXmgoQRB5zJsWyzSdRx1w7QFFzpS+V31rc9E="
