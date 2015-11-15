@@ -23,7 +23,10 @@ before_install:
   - cd ui
   - ln -s ../bower_components ./
   - ln -s ../node_modules ./
-  - npm install -g bower grunt-cli
+  - npm install -g bower grunt-cli &&
+    gem install sass &&
+    gem install compass &&
+    gem install guard-livereload
 
 install:
   - npm install -q && 
