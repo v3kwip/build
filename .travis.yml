@@ -33,7 +33,7 @@ install:
 
 script:
   - cd ${TRAVIS_BUILD_DIR}/ui
-  - rm -rf .git
+  - rm -rf .git .sass-cache .tmp
 
 notifications:
   email: false
