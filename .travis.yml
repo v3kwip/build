@@ -8,20 +8,13 @@ env:
 install:
   - source vars.bash
   - npm install -g npm@2.14.2
+  - npm install -g bower grunt-cli
 
 before_script:
-  - pwd
-  - echo ${FOO} ${BAR} ${MYV} ${TRAVIS_TAG}
-  - echo ${FILE/-./.}
-  - which node
-  - which npm
-  - which gem
-  - which ruby
+  - which node && which npm && which gem && which ruby && which docker
   - node --version
   - npm --version
+  - bower --version
 
 script:
-  - npm install
-
-after_success:
-  - which docker
+  - npm install && bower install
