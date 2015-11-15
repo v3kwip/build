@@ -2,9 +2,6 @@
   "name": "AT",
   "version": "0.1.0",
   "description": "Testing",
-  "scripts": {
-    "start": "node node_modules/http-server/bin/http-server -o"
-  },
   "keywords": [],
   "repository": "",
   "author": "AT",
