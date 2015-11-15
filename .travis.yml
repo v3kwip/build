@@ -7,11 +7,7 @@ env:
 install:
   - source vars.bash
 
-before_script:
-  - npm install -g bower
-  - node --version
-  - npm --version
-  - bower --version
-
 script:
-  - npm install && bower install
+  - npm install -g bower && 
+    npm install && 
+    bower install
