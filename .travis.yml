@@ -7,11 +7,9 @@ env:
 
 install:
   - source vars.bash
-  - npm install -g npm@2.14.2
-  - npm install -g bower grunt-cli
 
 before_script:
-  - which node && which npm && which gem && which ruby
+  - npm install -g bower
   - node --version
   - npm --version
   - bower --version
