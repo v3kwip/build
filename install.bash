@@ -26,7 +26,6 @@ composer config -g github-oauth.github.com ${GITHUB_OAUTH_TOKEN} &&
   composer global require -q drush/drush:^7.0 &&
   drush --version
 
-git clone -q --depth 1 $BUILD_URL build &
 git clone -q --depth 1 $MAKE_URL --branch=$MAKE_BRANCH make &
 git clone -q --depth 1 $ACCOUNTS_URL accounts &
 git clone -q --depth 1 $UI_URL ui &&
