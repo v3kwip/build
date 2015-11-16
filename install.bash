@@ -33,8 +33,8 @@ git config --global user.name "CI"
 # ---------------------
 export CXX=g++-4.8
 
-npm install -g npm@latest &&
-  npm install -g bower grunt-cli
+npm install -q -g npm@latest &&
+  npm install -q -g bower grunt-cli
 
 # --------
 # Build the UI
