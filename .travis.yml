@@ -70,10 +70,6 @@ script:
     git add ${BUILD_UI} &&
     git commit -m "Add ${BUILD_UI}"
 
-after_failure:
-  - gem install gist
-  - gist ${BUILD_DIR}/ui/npm-debug.log
-
 after_success:
   - git push --force origin ${BRANCH}:builds
 
