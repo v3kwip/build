@@ -2,7 +2,7 @@
 # Test #accounts
 # --------
 cd ~/clone/accounts &&
-  composer install &&
+  composer install -q &&
   ./vendor/bin/phpunit &&
 
 # --------
