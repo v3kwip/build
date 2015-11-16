@@ -31,8 +31,8 @@ install:
   - wget -q ${PK_URL} -O ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - ssh-keyscan $BUILD_DOMAIN >> ~/.ssh/known_hosts
-  - git config --global user.email "thehongtt@gmail.com" &&
-    git config --global user.name "Andy Truong" &&
+  - git config --global user.email "ci@toila.net" &&
+    git config --global user.name "CI" &&
     composer global require -q drush/drush:^7.0 &&
     drush --version &&
     npm install -g bower grunt-cli
