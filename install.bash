@@ -39,7 +39,6 @@ npm install -g npm@latest &&
   gem --version &&
   gem install sass compass guard-livereload
 
-
 # --------
 # Build the UI
 # --------
@@ -50,3 +49,8 @@ cd ~/clone/ui &&
   grunt set-env:testing &&
   grunt build &&
   tar -czf ~/clone/ui.tar.gz ui
+
+# --------
+# Make drupal code base
+# --------
+drush make -q --concurrency=12 ~/clone/make/build.make ~/clone/drupal
