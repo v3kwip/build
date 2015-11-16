@@ -11,7 +11,7 @@ matrix:
   fast_finish: true
 
 cache:
-  directories: [bower_components, node_modules, ~/.composer/vendor]
+  directories: [bower_components, node_modules, drush_make, ~/.composer/vendor]
 
 env:
   global:
@@ -42,6 +42,9 @@ before_script:
   - git clone -q $MAKE_URL --branch=$MAKE_BRANCH make
   - git clone ${ACCOUNTS_URL} accounts
   - git clone ${UI_URL} ui
+  - mkdir -p ${TRAVIS_BUILD_DIR}/drush_make
+  - CACHE_PREFIX=${TRAVIS_BUILD_DIR}/drush_make
+  - export CACHE_PREFIX
 
 script:
   # Make the base Drupal source code
