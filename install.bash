@@ -3,9 +3,9 @@
 # ---------------------
 COMPOSER_HOME=${HOME}/cache/composer
 
-mkdir -p ${HOME}/cache/drush/
-  && CACHE_PREFIX=${HOME}/cache/drush/
-  && export CACHE_PREFIX
+mkdir -p ${HOME}/cache/drush/ &&
+  CACHE_PREFIX=${HOME}/cache/drush/ &&
+  export CACHE_PREFIX
 
 # npm
 export PREFIX="${HOME}/cache/npm/"
