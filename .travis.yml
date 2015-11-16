@@ -11,7 +11,7 @@ matrix:
   fast_finish: true
 
 cache:
-  directories: [bower_components, node_modules, drush_make, ~/.composer/vendor]
+  directories: [bower_components, node_modules, drush_make, ~/.composer/vendor, ~/.drush]
 
 env:
   global:
