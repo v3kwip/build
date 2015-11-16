@@ -6,10 +6,18 @@ cd ~/clone/accounts &&
   ./vendor/bin/phpunit &&
 
 # --------
-# Test #ui
+# Build & test #ui
 # --------
 cd ~/clone/ui &&
+  export CXX=g++-4.8 &&
+  npm install -q -g npm@latest &&
+  npm install -q -g bower grunt-cli &&
+  npm install -q &&
+  bower install -q &&
+  gem install sass compass guard-livereload &&
+  grunt set-env:testing &&
   grunt ngconstant:testing &&
   grunt build &&
   grunt jshint &&
-  grunt test
+  grunt test &&
+  rm -rf .tmp
