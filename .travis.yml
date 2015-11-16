@@ -41,8 +41,8 @@ install:
 before_script:
   - git clone -q $BUILD_URL build &&
     git clone -q $MAKE_URL --branch=$MAKE_BRANCH make &&
-    git clone ${ACCOUNTS_URL} accounts &&
-    git clone ${UI_URL} ui
+    git clone -q ${ACCOUNTS_URL} accounts &&
+    git clone -q ${UI_URL} ui
   - mkdir -p ${TRAVIS_BUILD_DIR}/drush_make
   - CACHE_PREFIX=${TRAVIS_BUILD_DIR}/drush_make
   - export CACHE_PREFIX
@@ -58,6 +58,11 @@ script:
   - cd ${TRAVIS_BUILD_DIR} && 
     rm -rf accounts/.git &&
     tar -czf ${BUILD_ACCOUNTS} accounts
+    
+  # UI
+  - cd ${TRAVIS_BUILD_DIR} && 
+    rm -rf ui/.git &&
+    tar -czf ${BUILD_UI} ui
 
   # Commit the build
   - cd ${TRAVIS_BUILD_DIR}/build &&
