@@ -50,8 +50,8 @@ before_script:
 script:
   # Make the base Drupal source code
   # @TODO Update composer.json
-  - cd ${TRAVIS_BUILD_DIR}
-  - drush make -q --concurrency=4 ${TRAVIS_BUILD_DIR}/make/build.make drupal &&
+  - cd ${TRAVIS_BUILD_DIR} &&
+    drush make -q --concurrency=4 ${TRAVIS_BUILD_DIR}/make/build.make drupal &&
     tar -czf ${BUILD_DRUPAL} drupal
 
   # Accounts
@@ -60,16 +60,19 @@ script:
     tar -czf ${BUILD_ACCOUNTS} accounts
 
   # Commit the build
-  - cd ${TRAVIS_BUILD_DIR} &&
+  - cd ${TRAVIS_BUILD_DIR}/build &&
     git checkout --orphan ${BRANCH} && 
     git rm --cached -r * &&
     rm -rf *
-  - mv ${BUILD_DIR}/../${BUILD_DRUPAL} ./ &&
-    mv ${BUILD_DIR}/../${BUILD_UI} ./ &&
+    
+  - mv ${TRAVIS_BUILD_DIR}/${BUILD_DRUPAL} ./ &&
+    mv ${TRAVIS_BUILD_DIR}/${BUILD_UI} ./ &&
     git add ${BUILD_DRUPAL} &&
     git commit -m "Add ${BUILD_DRUPAL}" && 
     git add ${BUILD_UI} &&
-    git commit -m "Add ${BUILD_UI}"
+    git commit -m "Add ${BUILD_UI}" &&
+    git add ${BUILD_ACCOUNTS} &&
+    git commit -m "Add ${BUILD_ACCOUNTS}" && 
 
 after_success:
   - git push --force origin ${BRANCH}:builds
