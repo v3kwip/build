@@ -40,6 +40,8 @@ install:
 before_script:
   - git clone -q $BUILD_URL build &&
     git clone -q $MAKE_URL --branch=$MAKE_BRANCH make &&
+    # Debug
+    cat make/build.make &&
     git clone -q ${ACCOUNTS_URL} accounts &&
     git clone -q ${UI_URL} ui &&
     mkdir -p ${TRAVIS_BUILD_DIR}/drush_make && 
