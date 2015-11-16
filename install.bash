@@ -46,8 +46,7 @@ cd ~/clone/ui &&
   gem install sass compass guard-livereload &&
   grunt set-env:testing &&
   grunt build &&
-  rm -rf .tmp &&
-  tar -czf ~/clone/ui.tar.gz ./
+  rm -rf .tmp
 
 # --------
 # Make drupal code base
