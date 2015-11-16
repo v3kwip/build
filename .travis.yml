@@ -22,7 +22,6 @@ env:
     - BUILD_DRUPAL=${FILE_DRUPAL/-./.}
     - BUILD_ACCOUNTS=${FILE_ACCOUNTS/-./.}
     - BUILD_UI=${FILE_UI/-./.}
-    - BUILD_DIR=${TRAVIS_BUILD_DIR}/drupal
     - BRANCH=TravisCI-${TRAVIS_BRANCH}
 
 install:
