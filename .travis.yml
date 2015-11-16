@@ -15,6 +15,7 @@ cache:
 
 env:
   global:
+    - CXX=g++-4.8
     - FILE_DRUPAL=drupal-${TRAVIS_TAG}.tar.gz
     - FILE_ACCOUNTS=accounts-${TRAVIS_TAG}.tar.gz
     - FILE_UI=ui-${TRAVIS_TAG}.tar.gz
@@ -43,16 +44,6 @@ before_script:
   - git clone ${UI_URL} ui
 
 script:
-  # Make the UI
-  - cd ${TRAVIS_BUILD_DIR}/ui
-  - rm -rf .git
-  - npm install && \
-    bower install -q && \
-    grunt set-env:testing && \
-    grunt build && \
-    cd ${TRAVIS_BUILD_DIR} && \
-    tar -czf ${BUILD_UI} ui
-
   # Make the base Drupal source code
   # @TODO Update composer.json
   - cd ${TRAVIS_BUILD_DIR}
