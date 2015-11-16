@@ -89,6 +89,6 @@ after_success:
   - git push --force origin ${BRANCH}:builds
 
 notifications:
-  email: FALSE
+  email: false
 #  hipchat:
 #    secure: "TTPdgZFAHC/EPq3jTUXfoyl5NY/97xVgfVQoAOZM917Tpv03Z5Me/FFJXCzH6yIE7EyObN0mHnGfIK8x4FwWk+nChiA4ATQqvVW9Eea2jkpRMLtDvE/ZUmr3ZidtLaSh/mDNxVwfEFT9yLgBnwAiJ6XMAOrR0ZoawZ5/9StNKMR7zE2SyRP3k7no+4ahm5eeWB6CIPHlWZ39CdOyvrjr3IPQjX/I1t8y6UrVKzyRFZDwFaxGN3zVY+SWT7Iuv4WHnMz5vay0AH6MutwthbruR6IzCj8eYSCi7eTLCl4iqgygtfrs0pXIEYUWVudPKCVL/gNsjjMCFLMBVlISBIx7M9RCFid8ZCCF2etQ1bVfhUchE+gVBUa8F/CvHRMKnEpBC5wZ3hzjuQdwq4su2JBQNbGJM31MMdj7VBfinxvMvXKOcvjz72H025zOu/PZcQHTAYrezxU0FuQrF6vUHRfr84Z0t8rl+LkhtM0kxi0EGixOLXnp/UXJhDMHx0xButU5SJ2qd0Uhp+orSjmbswJHlQGf4W6pI6cSRRQbeQzf8ACvc11x7Qj09GrPGQoQPsLJin/17Yb5l/sT1DAGwlo9F3gFI8tdJ50oEyKgPakO2DkSqSWBYMIVKZo5sycMgEraOkTgrBgNXmgoQRB5zJsWyzSdRx1w7QFFzpS+V31rc9E="
