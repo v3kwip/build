@@ -3,14 +3,19 @@
 # ---------------------
 COMPOSER_HOME=${HOME}/cache/composer
 
-mkdir -p ${HOME}/cache/drush/ &&
-  CACHE_PREFIX=${HOME}/cache/drush/ &&
-  export CACHE_PREFIX
+mkdir -p ${HOME}/cache/ui/node_modules
+mkdir -p ${HOME}/cache/ui/bower_components
+mkdir -p ${HOME}/cache/drush
 
-# npm
+# drush caching
+CACHE_PREFIX=${HOME}/cache/drush/ && export CACHE_PREFIX
+
+# npm caching
 export PREFIX="${HOME}/cache/npm/"
 export PATH="${HOME}/cache/npm/bin/:${PATH}"
 npm config set cache "${HOME}/cache/npm/"
+
+# @TODO: gem caching?
 
 # ---------------------
 # PHP & Tools
@@ -24,7 +29,9 @@ composer config -g github-oauth.github.com ${GITHUB_OAUTH_TOKEN} &&
 git clone -q --depth 1 $BUILD_URL build &
 git clone -q --depth 1 $MAKE_URL --branch=$MAKE_BRANCH make &
 git clone -q --depth 1 $ACCOUNTS_URL accounts &
-git clone -q --depth 1 $UI_URL ui &
+git clone -q --depth 1 $UI_URL ui &&
+  ln -s ${HOME}/cache/ui/node_modules node_modules &&
+  ln -s ${HOME}/cache/ui/bower_components bower_components
 git config --global user.email "ci@toila.net"
 git config --global user.name "CI"
 
