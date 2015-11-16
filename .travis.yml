@@ -51,9 +51,7 @@ script:
   # @TODO Update composer.json
   - cd ${TRAVIS_BUILD_DIR} &&
     drush make -q --concurrency=4 ${TRAVIS_BUILD_DIR}/make/build.make drupal &&
-    ls -lah drupal &&
-    ls -lah drupal/profiles/ &&
-    cd drupal/profiles/g*/vendor &&
+    cd drupal/profiles/gocatalyze/vendor &&
     composer install --prefer-dist &&
     cd ${TRAVIS_BUILD_DIR}
     tar -czf ${BUILD_DRUPAL} drupal
