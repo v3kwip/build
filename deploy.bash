@@ -15,8 +15,6 @@ mkdir ~/clone/build
 cd ~/clone/build
 git init
 git remote add origin $BUILD_URL
-git rm --cached -r *
-rm -rf *
 
 # --------
 # Move the built source code to build git
