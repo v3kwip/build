@@ -72,7 +72,7 @@ script:
     git add ${BUILD_UI} &&
     git commit -m "Add ${BUILD_UI}" &&
     git add ${BUILD_ACCOUNTS} &&
-    git commit -m "Add ${BUILD_ACCOUNTS}" && 
+    git commit -m "Add ${BUILD_ACCOUNTS}"
 
 after_success:
   - git push --force origin ${BRANCH}:builds
