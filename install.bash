@@ -38,3 +38,15 @@ npm install -g npm@latest &&
   npm install -g bower grunt-cli &&
   gem --version &&
   gem install sass compass guard-livereload
+
+
+# --------
+# Build the UI
+# --------
+cd ~/clone/ui &&
+  rm -rf .git &&
+  npm install &&
+  bower install &&
+  grunt set-env:testing &&
+  grunt build &&
+  tar -czf ~/clone/ui.tar.gz ui
