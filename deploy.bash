@@ -3,6 +3,7 @@
 # --------
 cd ~/clone
 tar -czf ~/clone/drupal.tar.gz drupal
+rm -rf ui/.git &&
 tar -czf ~/clone/ui.tar.gz ui
 tar -czf ~/clone/accounts.tar.gz accounts
 
