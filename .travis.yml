@@ -41,14 +41,13 @@ before_script:
   - git clone -q $BUILD_URL build &&
     git clone -q $MAKE_URL --branch=$MAKE_BRANCH make &&
     git clone -q ${ACCOUNTS_URL} accounts &&
-    git clone -q ${UI_URL} ui
-  - mkdir -p ${TRAVIS_BUILD_DIR}/drush_make
-  - CACHE_PREFIX=${TRAVIS_BUILD_DIR}/drush_make
-  - export CACHE_PREFIX
+    git clone -q ${UI_URL} ui &&
+    mkdir -p ${TRAVIS_BUILD_DIR}/drush_make && 
+    CACHE_PREFIX=${TRAVIS_BUILD_DIR}/drush_make &&
+    export CACHE_PREFIX
 
 script:
   # Make the base Drupal source code
-  # @TODO Update composer.json
   - cd ${TRAVIS_BUILD_DIR} &&
     drush make -q --concurrency=4 ${TRAVIS_BUILD_DIR}/make/build.make drupal &&
     ls -lah drupal/profiles/gocatalyze &&
