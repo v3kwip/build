@@ -35,26 +35,6 @@ git clone -q --depth 1 $UI_URL ui &&
 git config --global user.email "ci@toila.net"
 git config --global user.name "CI"
 
-# ---------------------
-# Node & tools
-# ---------------------
-export CXX=g++-4.8
-
-npm install -q -g npm@latest &&
-  npm install -q -g bower grunt-cli
-
-# --------
-# Build the UI
-# --------
-cd ~/clone/ui &&
-  rm -rf .git &&
-  npm install -q &&
-  bower install -q &&
-  gem install sass compass guard-livereload &&
-  grunt set-env:testing &&
-  grunt build &&
-  rm -rf .tmp
-
 # --------
 # Make drupal code base
 # --------
