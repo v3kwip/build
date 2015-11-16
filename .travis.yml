@@ -74,16 +74,17 @@ script:
     git rm --cached -r * &&
     rm -rf *
     
-  - cd ${TRAVIS_BUILD_DIR}/build
-  - mv ${TRAVIS_BUILD_DIR}/${BUILD_DRUPAL} ./
-  - mv ${TRAVIS_BUILD_DIR}/${BUILD_ACCOUNTS} ./
-  - mv ${TRAVIS_BUILD_DIR}/${BUILD_UI} ./
-  - git add ${BUILD_DRUPAL}
-  - git commit -m "Add ${BUILD_DRUPAL}"
-  - git add ${BUILD_UI}
-  - git commit -m "Add ${BUILD_UI}"
-  - git add ${BUILD_ACCOUNTS}
-  - git commit -m "Add ${BUILD_ACCOUNTS}"
+  - cd ${TRAVIS_BUILD_DIR}/build &&
+    ls -lah &&
+    mv ${TRAVIS_BUILD_DIR}/${BUILD_DRUPAL} ./ &&
+    mv ${TRAVIS_BUILD_DIR}/${BUILD_ACCOUNTS} ./ &&
+    mv ${TRAVIS_BUILD_DIR}/${BUILD_UI} ./
+  - git add ${BUILD_DRUPAL} &&
+    git commit -m "Add ${BUILD_DRUPAL}"
+  - git add ${BUILD_UI} &&
+    git commit -m "Add ${BUILD_UI}"
+  - git add ${BUILD_ACCOUNTS} &&
+    git commit -m "Add ${BUILD_ACCOUNTS}"
 
 after_success:
   - git push --force origin ${BRANCH}:builds
