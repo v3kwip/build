@@ -23,9 +23,8 @@ composer config -g github-oauth.github.com ${GITHUB_OAUTH_TOKEN} &&
 
 git clone -q --depth 5 $BUILD_URL build &
 git clone -q --depth 5 $MAKE_URL --branch=$MAKE_BRANCH make &
-git clone -q --depth 5 ${ACCOUNTS_URL} accounts &
-git clone -q --depth 5 ${UI_URL} ui &
-
+git clone -q --depth 5 $ACCOUNTS_URL accounts &
+git clone -q --depth 5 $UI_URL ui &
 git config --global user.email "ci@toila.net"
 git config --global user.name "CI"
 
