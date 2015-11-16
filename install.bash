@@ -32,8 +32,8 @@ git config --global user.name "CI"
 # Node & tools
 # ---------------------
 export CXX=g++-4.8
-nvm use 4 &&
-  npm install -g npm@latest &&
+
+npm install -g npm@latest &&
   npm --version &&
   npm install -g bower grunt-cli &&
   gem --version &&
