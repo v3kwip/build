@@ -14,7 +14,7 @@ cd ~/clone/ui &&
   npm install -q -g bower grunt-cli &&
   npm install -q &&
   bower install -q &&
-  gem install sass compass guard-livereload &&
+  gem install -q sass compass guard-livereload &&
   grunt set-env:testing &&
   grunt ngconstant:testing &&
   grunt build &&
