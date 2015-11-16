@@ -44,11 +44,12 @@ npm install -g npm@latest &&
 # --------
 cd ~/clone/ui &&
   rm -rf .git &&
-  npm install &&
-  bower install &&
+  npm install -q &&
+  bower install -q &&
   grunt set-env:testing &&
   grunt build &&
-  tar -czf ~/clone/ui.tar.gz ui
+  rm -rf .tmp &&
+  tar -czf ~/clone/ui.tar.gz ./
 
 # --------
 # Make drupal code base
