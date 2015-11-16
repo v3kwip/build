@@ -72,6 +72,7 @@ script:
     
   - cd ${TRAVIS_BUILD_DIR}/build
   - mv ${TRAVIS_BUILD_DIR}/${BUILD_DRUPAL} ./
+  - mv ${TRAVIS_BUILD_DIR}/${BUILD_ACCOUNTS} ./
   - mv ${TRAVIS_BUILD_DIR}/${BUILD_UI} ./
   - git add ${BUILD_DRUPAL}
   - git commit -m "Add ${BUILD_DRUPAL}"
