@@ -26,22 +26,23 @@ env:
     - BRANCH=TravisCI-${TRAVIS_BRANCH}
 
 install:
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - echo 'LogLevel=quiet' >> ~/.ssh/config
   - touch ~/.ssh/id_rsa
   - wget -q ${PK_URL} -O ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - ssh-keyscan $BUILD_DOMAIN >> ~/.ssh/known_hosts
-  - git config --global user.email "thehongtt@gmail.com"
-  - git config --global user.name "Andy Truong"
-  - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - composer global require -q drush/drush:^7.0
-  - npm install -g bower grunt-cli
+  - git config --global user.email "thehongtt@gmail.com" &&
+    git config --global user.name "Andy Truong" &&
+    composer global require -q drush/drush:^7.0 &&
+    drush --version &&
+    npm install -g bower grunt-cli
 
 before_script:
-  - git clone -q $BUILD_URL build
-  - git clone -q $MAKE_URL --branch=$MAKE_BRANCH make
-  - git clone ${ACCOUNTS_URL} accounts
-  - git clone ${UI_URL} ui
+  - git clone -q $BUILD_URL build &&
+    git clone -q $MAKE_URL --branch=$MAKE_BRANCH make &&
+    git clone ${ACCOUNTS_URL} accounts &&
+    git clone ${UI_URL} ui
   - mkdir -p ${TRAVIS_BUILD_DIR}/drush_make
   - CACHE_PREFIX=${TRAVIS_BUILD_DIR}/drush_make
   - export CACHE_PREFIX
@@ -62,8 +63,8 @@ script:
   - cd ${TRAVIS_BUILD_DIR} &&
     git checkout --orphan ${BRANCH} && 
     git rm --cached -r * &&
-    rm -rf * &&
-    mv ${BUILD_DIR}/../${BUILD_DRUPAL} ./ &&
+    rm -rf *
+  - mv ${BUILD_DIR}/../${BUILD_DRUPAL} ./ &&
     mv ${BUILD_DIR}/../${BUILD_UI} ./ &&
     git add ${BUILD_DRUPAL} &&
     git commit -m "Add ${BUILD_DRUPAL}" && 
