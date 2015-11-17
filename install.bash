@@ -41,4 +41,17 @@ git config --global user.name "CI"
 # --------
 # Make drupal code base
 # --------
-drush make -q --concurrency=12 ~/clone/make/build.make ~/clone/drupal
+drush make -q --concurrency=12 ~/clone/make/build.make ~/clone/drupal &
+
+# --------
+# Build #ui
+# --------
+cd ~/clone/ui &&
+  export CXX=g++-4.8 &&
+  npm install -q -g npm@latest &&
+  npm install -q -g bower grunt-cli &&
+  npm install -q && bower install -q &&
+  gem install -q sass compass guard-livereload &&
+  grunt set-env:qa && grunt ngconstant:qa &&
+  grunt build && # grunt jshint && # grunt test &&
+  rm -rf .tmp
