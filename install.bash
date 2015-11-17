@@ -54,4 +54,4 @@ cd ~/clone/ui &&
   gem install -q sass compass guard-livereload &&
   grunt set-env:qa && grunt ngconstant:qa &&
   grunt build && # grunt jshint && # grunt test &&
-  rm -rf .tmp
+  rm -rf .tmp .sass-cache
