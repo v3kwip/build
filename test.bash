@@ -3,7 +3,7 @@
 # --------
 cd ~/clone/accounts &&
   composer install -q &&
-  ./vendor/bin/phpunit &&
+  # ./vendor/bin/phpunit &&
 
 # --------
 # Build & test #ui
@@ -19,5 +19,5 @@ cd ~/clone/ui &&
   grunt ngconstant:testing &&
   grunt build &&
   grunt jshint &&
-  grunt test &&
+  # grunt test &&
   rm -rf .tmp
